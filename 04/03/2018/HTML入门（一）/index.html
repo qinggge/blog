@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qinggge.github.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什么是HTML？HTML（超文本标记语言——HyperText Markup Language）是构成 Web 世界的基石。它描述并定义了一个网页的内容。   什么是W3C?W3C（万维网联盟——World Wide Web Consortium），又称W3C理事会，是万维网的主要国际标准组织，由李爵士（Tim Berners-Lee）于1994年10月离开欧洲核子研究中心（CERN）后成立。为解">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML入门（一）">
+<meta property="og:url" content="https://qinggge.github.io/blog/04/03/2018/HTML入门（一）/index.html">
+<meta property="og:site_name" content="长弓手">
+<meta property="og:description" content="什么是HTML？HTML（超文本标记语言——HyperText Markup Language）是构成 Web 世界的基石。它描述并定义了一个网页的内容。   什么是W3C?W3C（万维网联盟——World Wide Web Consortium），又称W3C理事会，是万维网的主要国际标准组织，由李爵士（Tim Berners-Lee）于1994年10月离开欧洲核子研究中心（CERN）后成立。为解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-04T08:57:38.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML入门（一）">
+<meta name="twitter:description" content="什么是HTML？HTML（超文本标记语言——HyperText Markup Language）是构成 Web 世界的基石。它描述并定义了一个网页的内容。   什么是W3C?W3C（万维网联盟——World Wide Web Consortium），又称W3C理事会，是万维网的主要国际标准组织，由李爵士（Tim Berners-Lee）于1994年10月离开欧洲核子研究中心（CERN）后成立。为解">
+
+<link rel="canonical" href="https://qinggge.github.io/blog/04/03/2018/HTML入门（一）/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML入门（一） | 长弓手</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">长弓手</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qinggge.github.io/blog/04/03/2018/HTML入门（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Qinggge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长弓手">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML入门（一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-03 20:53:47" itemprop="dateCreated datePublished" datetime="2018-04-03T20:53:47+08:00">2018-04-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是HTML？"><a href="#什么是HTML？" class="headerlink" title="什么是HTML？"></a>什么是HTML？</h1><p><code>HTML</code>（超文本标记语言——HyperText Markup Language）是构成 Web 世界的基石。它描述并定义了一个网页的内容。  </p>
+<h1 id="什么是W3C"><a href="#什么是W3C" class="headerlink" title="什么是W3C?"></a>什么是W3C?</h1><p><code>W3C</code>（万维网联盟——World Wide Web Consortium），又称W3C理事会，是万维网的主要国际标准组织，由李爵士（Tim Berners-Lee）于1994年10月离开欧洲核子研究中心（CERN）后成立。<br>为解决网络应用中不同平台、技术和开发者带来的不兼容问题，保障网络信息的顺利和完整流通，万维网联盟制定了一系列标准并督促网络应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。 <code>W3C</code> 也制定了包括 <code>XML</code> 和 <code>CSS</code> 等的众多影响深远的标准规范。<br><a id="more"></a></p>
+<h1 id="什么是MDN？"><a href="#什么是MDN？" class="headerlink" title="什么是MDN？"></a>什么是MDN？</h1><p><code>MDN</code>（旧称Mozilla Developer Network、Mozilla Developer Center）是一个汇集众多Mozilla基金会产品和网络技术开发文档的免费网站。<br>想要查询某个标签或某个语法的用法及定义，可在<a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN</a>中查询，也可在搜索引擎中输入 <code>XXX MDN</code> 查找。  </p>
+<h1 id="HTML5所有标签列表"><a href="#HTML5所有标签列表" class="headerlink" title="HTML5所有标签列表"></a>HTML5所有标签列表</h1><h2 id="根元素"><a href="#根元素" class="headerlink" title="根元素"></a>根元素</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;html&gt;</code></td>
+<td>代表 HTML 或 XHTML 文档的根。其他所有元素必须是这个元素的子节点。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文档元数据"><a href="#文档元数据" class="headerlink" title="文档元数据"></a>文档元数据</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;head&gt;</code></td>
+<td>代表关于文档元数据的一个集合，包括脚本或样式表的链接或内容。</td>
+</tr>
+<tr>
+<td><code>&lt;title&gt;</code></td>
+<td>定义文档的标题，将显示在浏览器的标题栏或标签页上。该元素只能包含文本，包含的标签不会被解释。</td>
+</tr>
+<tr>
+<td><code>&lt;base&gt;</code></td>
+<td>定义页面上相对 URL 的基准 URL。</td>
+</tr>
+<tr>
+<td><code>&lt;link&gt;</code></td>
+<td>用于链接外部的 CSS 到该文档。</td>
+</tr>
+<tr>
+<td><code>&lt;meta&gt;</code></td>
+<td>定义其他 HTML 元素无法描述的元数据。</td>
+</tr>
+<tr>
+<td><code>&lt;style&gt;</code></td>
+<td>用于内联 CSS。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;script&gt;</code></td>
+<td>定义一个内联脚本或链接到外部脚本。脚本语言是 JavaScript。</td>
+</tr>
+<tr>
+<td><code>&lt;noscript&gt;</code></td>
+<td>定义当浏览器不支持脚本时显示的替代文字。</td>
+</tr>
+<tr>
+<td><code>&lt;template&gt;</code></td>
+<td>通过 JavaScript 在运行时实例化内容的容器。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="章节"><a href="#章节" class="headerlink" title="章节"></a>章节</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;body&gt;</code></td>
+<td>代表 HTML 文档的内容。在文档中只能有一个 <code>&lt;body&gt;</code> 元素。</td>
+</tr>
+<tr>
+<td><code>&lt;section&gt;</code></td>
+<td>定义文档中的一个章节。</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>定义只包含导航链接的章节。</td>
+</tr>
+<tr>
+<td><code>&lt;article&gt;</code></td>
+<td>定义可以独立于内容其余部分的完整独立内容块。</td>
+</tr>
+<tr>
+<td><code>&lt;aside&gt;</code></td>
+<td>定义和页面内容关联度较低的内容——如果被删除，剩下的内容仍然很合理。</td>
+</tr>
+<tr>
+<td><code>&lt;h1~h6&gt;</code></td>
+<td>标题元素实现了六层文档标题，<code>&lt;h1&gt;</code> 是最大的标题，<code>&lt;h6&gt;</code> 是最小的标题。标题元素简要地描述章节的主题。</td>
+</tr>
+<tr>
+<td><code>&lt;header&gt;</code></td>
+<td>定义页面或章节的头部。它经常包含 logo、页面标题和导航性的目录。</td>
+</tr>
+<tr>
+<td><code>&lt;footer&gt;</code></td>
+<td>定义页面或章节的尾部。它经常包含版权信息、法律信息链接和反馈建议用的地址。</td>
+</tr>
+<tr>
+<td><code>&lt;address&gt;</code></td>
+<td>定义包含联系信息的一个章节。</td>
+</tr>
+<tr>
+<td><code>&lt;main&gt;</code></td>
+<td>定义文档中主要或重要的内容。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="组织内容"><a href="#组织内容" class="headerlink" title="组织内容"></a>组织内容</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;p&gt;</code></td>
+<td>定义一个段落。</td>
+</tr>
+<tr>
+<td><code>&lt;hr&gt;</code></td>
+<td>代表章节、文章或其他长内容中段落之间的分隔符。</td>
+</tr>
+<tr>
+<td><code>&lt;pre&gt;</code></td>
+<td>代表其内容已经预先排版过，格式应当保留 。</td>
+</tr>
+<tr>
+<td><code>&lt;blockquote&gt;</code></td>
+<td>代表引用自其他来源的内容。</td>
+</tr>
+<tr>
+<td><code>&lt;ol&gt;</code></td>
+<td>定义一个有序列表。</td>
+</tr>
+<tr>
+<td><code>&lt;ul&gt;</code></td>
+<td>定义一个无序列表。</td>
+</tr>
+<tr>
+<td><code>&lt;li&gt;</code></td>
+<td>定义列表中的一个列表项。</td>
+</tr>
+<tr>
+<td><code>&lt;dl&gt;</code></td>
+<td>定义一个定义列表（一系列术语和其定义）。</td>
+</tr>
+<tr>
+<td><code>&lt;dt&gt;</code></td>
+<td>代表一个由下一个 <code>&lt;dd&gt;</code> 定义的术语。</td>
+</tr>
+<tr>
+<td><code>&lt;dd&gt;</code></td>
+<td>代表出现在它之前术语的定义。</td>
+</tr>
+<tr>
+<td><code>&lt;figure&gt;</code></td>
+<td>代表一个和文档有关的图例。</td>
+</tr>
+<tr>
+<td><code>&lt;figcaption&gt;</code></td>
+<td>代表一个图例的说明。</td>
+</tr>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td>代表一个通用的容器，没有特殊含义。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文字形式"><a href="#文字形式" class="headerlink" title="文字形式"></a>文字形式</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;a&gt;</code></td>
+<td>代表一个链接到其他资源的超链接。</td>
+</tr>
+<tr>
+<td><code>&lt;em&gt;</code></td>
+<td>代表强调 文字。</td>
+</tr>
+<tr>
+<td><code>&lt;strong&gt;</code></td>
+<td>代表特别重要 文字。</td>
+</tr>
+<tr>
+<td><code>&lt;small&gt;</code></td>
+<td>代表注释，如免责声明、版权声明等，对理解文档不重要。</td>
+</tr>
+<tr>
+<td><code>&lt;s&gt;</code></td>
+<td>代表不准确或不相关的内容。</td>
+</tr>
+<tr>
+<td><code>&lt;cite&gt;</code></td>
+<td>代表作品标题。</td>
+</tr>
+<tr>
+<td><code>&lt;q&gt;</code></td>
+<td>代表内联的引用。</td>
+</tr>
+<tr>
+<td><code>&lt;dfn&gt;</code></td>
+<td>代表一个术语包含在其最近祖先内容中的定义。</td>
+</tr>
+<tr>
+<td><code>&lt;abbr&gt;</code></td>
+<td>代表省略或缩写，其完整内容在 title 属性中。</td>
+</tr>
+<tr>
+<td><code>&lt;data&gt;</code></td>
+<td>关联一个内容的机器可读的等价形式（该元素只在 WHATWG 版本的 HTML 标准中，不在 W3C 版本的 HTML5 标准中）。</td>
+</tr>
+<tr>
+<td><code>&lt;time&gt;</code></td>
+<td>代表日期和时间值；机器可读的等价形式通过 datetime 属性指定。</td>
+</tr>
+<tr>
+<td><code>&lt;code&gt;</code></td>
+<td>代表计算机代码。</td>
+</tr>
+<tr>
+<td><code>&lt;var&gt;</code></td>
+<td>代表代码中的变量。</td>
+</tr>
+<tr>
+<td><code>&lt;samp&gt;</code></td>
+<td>代表程序或电脑的输出。</td>
+</tr>
+<tr>
+<td><code>&lt;kbd&gt;</code></td>
+<td>代表用户输入，一般从键盘输出，但也可以代表其他输入，如语音输入。</td>
+</tr>
+<tr>
+<td><code>&lt;sub&gt;</code>,<code>&lt;sup&gt;</code></td>
+<td>分别代表下标和上标。</td>
+</tr>
+<tr>
+<td><code>&lt;i&gt;</code></td>
+<td>代表一段不同性质的文字，如技术术语、外文短语等。</td>
+</tr>
+<tr>
+<td><code>&lt;b&gt;</code></td>
+<td>代表一段需要被关注的文字。</td>
+</tr>
+<tr>
+<td><code>&lt;u&gt;</code></td>
+<td>代表一段需要下划线呈现的文本注释，如标记出拼写错误的文字等。</td>
+</tr>
+<tr>
+<td><code>&lt;mark&gt;</code></td>
+<td>代表一段需要被高亮的引用文字。</td>
+</tr>
+<tr>
+<td><code>&lt;ruby&gt;</code></td>
+<td>代表被<code>ruby</code>注释标记的文本，如中文汉字和它的拼音。</td>
+</tr>
+<tr>
+<td><code>&lt;rt&gt;</code></td>
+<td>代表<code>ruby</code>注释 ，如中文拼音。</td>
+</tr>
+<tr>
+<td><code>&lt;rp&gt;</code></td>
+<td>代表<code>ruby</code>注释两边的额外插入文本，用于在不支持<code>ruby</code>注释显示的浏览器中提供友好的注释显示。</td>
+</tr>
+<tr>
+<td><code>&lt;bdi&gt;</code></td>
+<td>代表需要脱离父元素文本方向的一段文本。它允许嵌入一段不同或未知文本方向格式的文本。</td>
+</tr>
+<tr>
+<td><code>&lt;bdo&gt;</code></td>
+<td>指定子元素的文本方向 ，显式地覆盖默认的文本方向。</td>
+</tr>
+<tr>
+<td><code>&lt;span&gt;</code></td>
+<td>代表一段没有特殊含义的文本，当其他语义元素都不适合文本时候可以使用该元素。</td>
+</tr>
+<tr>
+<td><code>&lt;br&gt;</code></td>
+<td>代表换行。</td>
+</tr>
+<tr>
+<td><code>&lt;wbr&gt;</code></td>
+<td>代表建议换行 (Word Break Opportunity) ，当文本太长需要换行时将会在此处添加换行符。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;ins&gt;</code></td>
+<td>定义增加到文档的内容。</td>
+</tr>
+<tr>
+<td><code>&lt;del&gt;</code></td>
+<td>定义从文档移除的内容。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="嵌入内容"><a href="#嵌入内容" class="headerlink" title="嵌入内容"></a>嵌入内容</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;img&gt;</code></td>
+<td>代表一张图片。</td>
+</tr>
+<tr>
+<td><code>&lt;iframe&gt;</code></td>
+<td>代表一个内联的框架。</td>
+</tr>
+<tr>
+<td><code>&lt;embed&gt;</code></td>
+<td>代表一个嵌入的外部资源，如应用程序或交互内容。</td>
+</tr>
+<tr>
+<td><code>&lt;object&gt;</code></td>
+<td>代表一个外部资源，如图片、HTML 子文档、插件等。</td>
+</tr>
+<tr>
+<td><code>&lt;param&gt;</code></td>
+<td>代表 <code>&lt;object&gt;</code> 元素所指定的插件的参数。</td>
+</tr>
+<tr>
+<td><code>&lt;video&gt;</code></td>
+<td>代表一段视频及其视频文件和字幕，并提供了播放视频的用户界面。</td>
+</tr>
+<tr>
+<td><code>&lt;audio&gt;</code></td>
+<td>代表一段声音，或音频流。</td>
+</tr>
+<tr>
+<td><code>&lt;source&gt;</code></td>
+<td>为 <code>&lt;video&gt;</code> 或 <code>&lt;audio&gt;</code> 这类媒体元素指定媒体源。</td>
+</tr>
+<tr>
+<td><code>&lt;track&gt;</code></td>
+<td>为 <code>&lt;video&gt;</code> 或 <code>&lt;audio&gt;</code> 这类媒体元素指定文本轨道（字幕）。</td>
+</tr>
+<tr>
+<td><code>&lt;canvas&gt;</code></td>
+<td>代表位图区域，可以通过脚本在它上面实时呈现图形，如图表、游戏绘图等。</td>
+</tr>
+<tr>
+<td><code>&lt;map&gt;</code></td>
+<td>与 <code>&lt;area&gt;</code> 元素共同定义图像映射区域。</td>
+</tr>
+<tr>
+<td><code>&lt;area&gt;</code></td>
+<td>与 <code>&lt;map&gt;</code> 元素共同定义图像映射区域。</td>
+</tr>
+<tr>
+<td><code>&lt;svg&gt;</code></td>
+<td>定义一个嵌入式矢量图。</td>
+</tr>
+<tr>
+<td><code>&lt;math&gt;</code></td>
+<td>定义一段数学公式。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;table&gt;</code></td>
+<td>定义多维数据。</td>
+</tr>
+<tr>
+<td><code>&lt;caption&gt;</code></td>
+<td>代表表格的标题。</td>
+</tr>
+<tr>
+<td><code>&lt;colgroup&gt;</code></td>
+<td>代表表格中一组单列或多列。</td>
+</tr>
+<tr>
+<td><code>&lt;col&gt;</code></td>
+<td>代表表格中的列。</td>
+</tr>
+<tr>
+<td><code>&lt;tbody&gt;</code></td>
+<td>代代表表格中一块具体数据 （表格主体）。</td>
+</tr>
+<tr>
+<td><code>&lt;thead&gt;</code></td>
+<td>代表表格中一块列标签 （表头）。</td>
+</tr>
+<tr>
+<td><code>&lt;tfoot&gt;</code></td>
+<td>代表表格中一块列摘要 （表尾）。</td>
+</tr>
+<tr>
+<td><code>&lt;tr&gt;</code></td>
+<td>代表表格中的行。</td>
+</tr>
+<tr>
+<td><code>&lt;td&gt;</code></td>
+<td>代表表格中的单元格。</td>
+</tr>
+<tr>
+<td><code>&lt;th&gt;</code></td>
+<td>代表表格中的头部单元格。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;form&gt;</code></td>
+<td>代表一个表单，由控件组成。</td>
+</tr>
+<tr>
+<td><code>&lt;fieldset&gt;</code></td>
+<td>代表控件组。</td>
+</tr>
+<tr>
+<td><code>&lt;label&gt;</code></td>
+<td>代表 <code>&lt;fieldset&gt;</code> 控件组的标题。</td>
+</tr>
+<tr>
+<td><code>&lt;input&gt;</code></td>
+<td>代表允许用户编辑数据的数据区 （文本框、单选框、复选框等）。</td>
+</tr>
+<tr>
+<td><code>&lt;button&gt;</code></td>
+<td>代代按钮。</td>
+</tr>
+<tr>
+<td><code>&lt;select&gt;</code></td>
+<td>代表下拉框。</td>
+</tr>
+<tr>
+<td><code>&lt;datalist&gt;</code></td>
+<td>代表提供给其他控件的一组预定义选项。</td>
+</tr>
+<tr>
+<td><code>&lt;optgroup&gt;</code></td>
+<td>代表一个选项分组。</td>
+</tr>
+<tr>
+<td><code>&lt;option&gt;</code></td>
+<td>代表一个 <code>&lt;select&gt;</code> 元素或 <code>&lt;datalist&gt;</code> 元素中的一个选项。</td>
+</tr>
+<tr>
+<td><code>&lt;textarea&gt;</code></td>
+<td>代表多行文本框。</td>
+</tr>
+<tr>
+<td><code>&lt;keygen&gt;</code></td>
+<td>代表一个密钥对生成器 控件。</td>
+</tr>
+<tr>
+<td><code>&lt;output&gt;</code></td>
+<td>代表计算值。</td>
+</tr>
+<tr>
+<td><code>&lt;progress&gt;</code></td>
+<td>代表进度条。</td>
+</tr>
+<tr>
+<td><code>&lt;meter&gt;</code></td>
+<td>代表滑动条。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="交互元素"><a href="#交互元素" class="headerlink" title="交互元素"></a>交互元素</h2><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;details&gt;</code></td>
+<td>代表一个用户可以(点击)获取额外信息或控件的小部件。</td>
+</tr>
+<tr>
+<td><code>&lt;summary&gt;</code></td>
+<td>代表 <code>&lt;details&gt;</code> 元素的综述 或标题。</td>
+</tr>
+<tr>
+<td><code>&lt;menuitem&gt;</code></td>
+<td>代表一个用户可以点击的菜单项。</td>
+</tr>
+<tr>
+<td><code>&lt;menu&gt;</code></td>
+<td>代表菜单。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="什么是空元素？"><a href="#什么是空元素？" class="headerlink" title="什么是空元素？"></a>什么是空元素？</h1><p>一个空元素（empty element）可能是 HTML ， SVG ，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的 element 。<br>在 HTML 中，通常在一个空元素上使用一个闭标签是无效的。例如， <code>&lt;input type=&quot;text&quot;&gt;&lt;/input&gt;</code> 的闭标签是无效的 HTML。<br>在 HTML 中，有以下这些空元素：</p>
+<ul>
+<li><code>&lt;area&gt;</code></li>
+<li><code>&lt;base&gt;</code></li>
+<li><code>&lt;br&gt;</code></li>
+<li><code>&lt;col&gt;</code></li>
+<li><code>&lt;colgroup&gt;</code> when the <code>span</code> is present</li>
+<li><code>&lt;command&gt;</code></li>
+<li><code>&lt;embed&gt;</code></li>
+<li><code>&lt;hr&gt;</code></li>
+<li><code>&lt;img&gt;</code></li>
+<li><code>&lt;input&gt;</code></li>
+<li><code>&lt;keygen&gt;</code></li>
+<li><code>&lt;link&gt;</code></li>
+<li><code>&lt;meta&gt;</code></li>
+<li><code>&lt;param&gt;</code></li>
+<li><code>&lt;source&gt;</code></li>
+<li><code>&lt;track&gt;</code></li>
+<li><code>&lt;wbr&gt;</code></li>
+</ul>
+<h1 id="什么是可替换元素？"><a href="#什么是可替换元素？" class="headerlink" title="什么是可替换元素？"></a>什么是可替换元素？</h1><p>CSS 里，可替换元素（replaced element）的展现不是由 CSS 来控制的。这些元素是一类 外观渲染独立于CSS的 外部对象。 典型的可替换元素有 <code>&lt;img&gt;</code>、 <code>&lt;object&gt;</code>、 <code>&lt;video&gt;</code> 和 表单元素，如<code>&lt;textarea&gt;</code>、 <code>&lt;input&gt;</code> 。 某些元素只在一些特殊情况下表现为可替换元素，例如 <code>&lt;audio&gt;</code> 和 <code>&lt;canvas&gt;</code> 。 通过 CSS content 属性来插入的对象 被称作 匿名可替换元素（anonymous replaced elements）。<br>CSS 在某些情况下会对可替换元素做特殊处理，比如计算外边距和一些 <code>auto</code> 值。<br>需要注意的是，一部分（并非全部）可替换元素，本身具有尺寸和基线（baseline），会被像 <code>vertical-align</code> 之类的一些 CSS 属性用到。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/03/31/2018/HTTP协议简单入门/" rel="prev" title="HTTP协议简单入门">
+      <i class="fa fa-chevron-left"></i> HTTP协议简单入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/04/08/2018/CSS-Tricks/" rel="next" title="CSS-Tricks">
+      CSS-Tricks <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HTML？"><span class="nav-number">1.</span> <span class="nav-text">什么是HTML？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是W3C"><span class="nav-number">2.</span> <span class="nav-text">什么是W3C?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是MDN？"><span class="nav-number">3.</span> <span class="nav-text">什么是MDN？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML5所有标签列表"><span class="nav-number">4.</span> <span class="nav-text">HTML5所有标签列表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#根元素"><span class="nav-number">4.1.</span> <span class="nav-text">根元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档元数据"><span class="nav-number">4.2.</span> <span class="nav-text">文档元数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本"><span class="nav-number">4.3.</span> <span class="nav-text">脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#章节"><span class="nav-number">4.4.</span> <span class="nav-text">章节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组织内容"><span class="nav-number">4.5.</span> <span class="nav-text">组织内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文字形式"><span class="nav-number">4.6.</span> <span class="nav-text">文字形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑"><span class="nav-number">4.7.</span> <span class="nav-text">编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌入内容"><span class="nav-number">4.8.</span> <span class="nav-text">嵌入内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">4.9.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单"><span class="nav-number">4.10.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交互元素"><span class="nav-number">4.11.</span> <span class="nav-text">交互元素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是空元素？"><span class="nav-number">5.</span> <span class="nav-text">什么是空元素？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是可替换元素？"><span class="nav-number">6.</span> <span class="nav-text">什么是可替换元素？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Qinggge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qinggge</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

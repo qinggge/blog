@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qinggge.github.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言CSS是一个网页的表现，网页好不好看取决于CSS样式，而布局是CSS中比较重要的部分。本博文将总结个人在前端学习中碰到的几种布局及一些有趣的小技巧。   左右布局float浮动布局在当今页面中很常见，即是将需要布局的块级元素设置样式 float: left;，即可将元素向左浮动。">
+<meta name="keywords" content="CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS-Tricks">
+<meta property="og:url" content="https://qinggge.github.io/blog/04/08/2018/CSS-Tricks/index.html">
+<meta property="og:site_name" content="长弓手">
+<meta property="og:description" content="前言CSS是一个网页的表现，网页好不好看取决于CSS样式，而布局是CSS中比较重要的部分。本博文将总结个人在前端学习中碰到的几种布局及一些有趣的小技巧。   左右布局float浮动布局在当今页面中很常见，即是将需要布局的块级元素设置样式 float: left;，即可将元素向左浮动。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_1.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_2.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_5.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_6.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_7.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/flex_2.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/flex_1.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/flex_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/flex_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_1.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_2.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_8.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/fl_9.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_5.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/ib_6.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/hc_1.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/hc_2.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/hc_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/hc_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/vc_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/vc_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/vc_7.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/vc_9.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/vc_10.png">
+<meta property="og:updated_time" content="2020-04-04T08:57:38.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS-Tricks">
+<meta name="twitter:description" content="前言CSS是一个网页的表现，网页好不好看取决于CSS样式，而布局是CSS中比较重要的部分。本博文将总结个人在前端学习中碰到的几种布局及一些有趣的小技巧。   左右布局float浮动布局在当今页面中很常见，即是将需要布局的块级元素设置样式 float: left;，即可将元素向左浮动。">
+<meta name="twitter:image" content="http://p69er22kd.bkt.clouddn.com/fl_1.png">
+
+<link rel="canonical" href="https://qinggge.github.io/blog/04/08/2018/CSS-Tricks/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CSS-Tricks | 长弓手</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">长弓手</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qinggge.github.io/blog/04/08/2018/CSS-Tricks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Qinggge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长弓手">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS-Tricks
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-08 22:53:47" itemprop="dateCreated datePublished" datetime="2018-04-08T22:53:47+08:00">2018-04-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSS是一个网页的表现，网页好不好看取决于CSS样式，而布局是CSS中比较重要的部分。本博文将总结个人在前端学习中碰到的几种布局及一些有趣的小技巧。  </p>
+<h1 id="左右布局"><a href="#左右布局" class="headerlink" title="左右布局"></a>左右布局</h1><h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2><p>浮动布局在当今页面中很常见，即是将需要布局的块级元素设置样式 <code>float: left;</code>，即可将元素向左浮动。<br><a id="more"></a><br>e.g.<br>元素设置：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_1.png" alt="fl_1"> <img src="http://p69er22kd.bkt.clouddn.com/fl_2.png" alt="fl_2">  </p>
+<p>初始元素及初始样式如上图，效果如下：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_3.png" alt="fl_3">  </p>
+<p>给 class <code>one</code> 及 <code>two</code> 加上样式 <code>float: left;</code> 后：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_4.png" alt="fl_4">  </p>
+<p>此时可见 div <code>wrapper</code> 的高度坍缩为0，这是因为子元素 <code>one</code> 及 <code>two</code> 设置浮动后，脱离了文档流，此时的最佳解决方法是，给父级元素 div <code>wrapper</code> 添加after伪类 <code>.clearfix</code> 即可：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_5.png" alt="fl_5"><br><img src="http://p69er22kd.bkt.clouddn.com/fl_6.png" alt="fl_6">  </p>
+<p>当然也可给 div <code>two</code> 设置样式 <code>float: right;</code>：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_7.png" alt="fl_7">  </p>
+<h2 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h2><p>一列定宽，一列自适应<br><img src="http://p69er22kd.bkt.clouddn.com/flex_2.png" alt="flex_2"><br><img src="http://p69er22kd.bkt.clouddn.com/flex_1.png" alt="flex_1">  </p>
+<p>也可设置一列不定宽，一列自适应<br><img src="http://p69er22kd.bkt.clouddn.com/flex_3.png" alt="flex_3"><br><img src="http://p69er22kd.bkt.clouddn.com/flex_4.png" alt="flex_4">  </p>
+<h2 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h2><p>将块级元素设置 <code>display: inline-block;</code> 也可作为页面布局。<br>e.g.<br><img src="http://p69er22kd.bkt.clouddn.com/ib_1.png" alt="ib_1"><br><img src="http://p69er22kd.bkt.clouddn.com/ib_2.png" alt="ib_2">  </p>
+<p>但是我们可以发现，两个元素之间出现了一个间距，这是因为元素间，换行显示或空格分隔的情况下会有间距，将元素间的空格或换行去除可以去掉这个间距：<br><img src="http://p69er22kd.bkt.clouddn.com/ib_3.png" alt="ib_3"><br><img src="http://p69er22kd.bkt.clouddn.com/ib_4.png" alt="ib_4">  </p>
+<p>这个间距有时会对我们布局，或是兼容性处理产生影响。若需将此间距去除，可以参考博文<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="noopener">去除inline-block元素间间距的N种方法</a>里提到的数种方法，此处不细举例。</p>
+<h1 id="左中右布局"><a href="#左中右布局" class="headerlink" title="左中右布局"></a>左中右布局</h1><h2 id="float-1"><a href="#float-1" class="headerlink" title="float"></a>float</h2><p>浮动布局也可以实现左中右三列布局，如下图：<br><img src="http://p69er22kd.bkt.clouddn.com/fl_8.png" alt="fl_8"><br><img src="http://p69er22kd.bkt.clouddn.com/fl_9.png" alt="fl_9">  </p>
+<p>div <code>three</code> 设置向左或向右浮动都可以实现该布局。</p>
+<h2 id="inline-block-1"><a href="#inline-block-1" class="headerlink" title="inline-block"></a>inline-block</h2><p>同理，设置 <code>display: inline-block;</code>属性也可以实现左中右布局：<br><img src="http://p69er22kd.bkt.clouddn.com/ib_5.png" alt="ib_5"><br><img src="http://p69er22kd.bkt.clouddn.com/ib_6.png" alt="ib_6">  </p>
+<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><p>使用flex布局可以十分简便地实现各种布局，可参照<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程：语法篇</a>及<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">Flex 布局教程：实例篇</a>。  </p>
+<h1 id="元素的水平居中"><a href="#元素的水平居中" class="headerlink" title="元素的水平居中"></a>元素的水平居中</h1><h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><p>将块级元素的样式设置如下，即可设置块级元素水平居中（需设置宽度）：<br><img src="http://p69er22kd.bkt.clouddn.com/hc_1.png" alt="hc_1"><br><img src="http://p69er22kd.bkt.clouddn.com/hc_2.png" alt="hc_2">  </p>
+<p>也可以把块级元素的的 <code>display</code> 属性设置为 <code>inline</code> ，即改为行内元素，这样通过设置父元素的 <code>text-align: center;</code>。来实现居中了，但这样做后块级元素就不能设置 <code>width</code> 属性了。<br><img src="http://p69er22kd.bkt.clouddn.com/hc_3.png" alt="hc_3"><br><img src="http://p69er22kd.bkt.clouddn.com/hc_4.png" alt="hc_4">  </p>
+<h2 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h2><p>将行内元素的父元素设置属性 <code>text-align: center;</code> 即可设置行内元素水平居中。  </p>
+<h1 id="元素的垂直居中"><a href="#元素的垂直居中" class="headerlink" title="元素的垂直居中"></a>元素的垂直居中</h1><h2 id="块级元素-1"><a href="#块级元素-1" class="headerlink" title="块级元素"></a>块级元素</h2><p>可设置 <code>line-height</code>，设置块级元素为垂直居中：<br><img src="http://p69er22kd.bkt.clouddn.com/vc_3.png" alt="vc_3"><br><img src="http://p69er22kd.bkt.clouddn.com/vc_4.png" alt="vc_4">  </p>
+<p>也可如下图设置：<br><img src="http://p69er22kd.bkt.clouddn.com/vc_7.png" alt="vc_7">  </p>
+<h2 id="行内元素-1"><a href="#行内元素-1" class="headerlink" title="行内元素"></a>行内元素</h2><p>行内元素可设置 <code>line-height</code> 属性及 <code>height</code> 属性相等：<br><img src="http://p69er22kd.bkt.clouddn.com/vc_9.png" alt="vc_9"><br><img src="http://p69er22kd.bkt.clouddn.com/vc_10.png" alt="vc_10">  </p>
+<h1 id="一些不常见的CSS样式设置"><a href="#一些不常见的CSS样式设置" class="headerlink" title="一些不常见的CSS样式设置"></a>一些不常见的CSS样式设置</h1><ol>
+<li>使用 <code>user-select: none;</code> 属性，可以禁止用户选中文本：<span class="select">我无法被选中</span>。  </li>
+<li>使用 <code>::selection</code> 选择器，可以使被选中的文本变化样式：<span class="eg">我被选中可以变色！！</span>（只能向 <code>::selection</code> 选择器应用少量 CSS 属性：<code>color</code>、<code>background</code>、<code>cursor</code> 以及 <code>outline</code>）。</li>
+<li>模糊文本设置：<span class="blur">我怎么这么模糊</span>，给元素添加上样式<br><code>color: transparent;</code><br><code>text-shadow:  0 0 5px rgba(0,0,0,0.5);</code><br>即可。<style>.eg::selection{color: red;}.select{user-select: none; font-weight: bold;}.blur{color: transparent; text-shadow: 0 0 5px rgba(0,0,0,0.5);}</style> </li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/04/03/2018/HTML入门（一）/" rel="prev" title="HTML入门（一）">
+      <i class="fa fa-chevron-left"></i> HTML入门（一）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/04/30/2018/JS里的数据/" rel="next" title="JS里的数据">
+      JS里的数据 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#左右布局"><span class="nav-number">2.</span> <span class="nav-text">左右布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#float"><span class="nav-number">2.1.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex布局"><span class="nav-number">2.2.</span> <span class="nav-text">flex布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-block"><span class="nav-number">2.3.</span> <span class="nav-text">inline-block</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#左中右布局"><span class="nav-number">3.</span> <span class="nav-text">左中右布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#float-1"><span class="nav-number">3.1.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline-block-1"><span class="nav-number">3.2.</span> <span class="nav-text">inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex"><span class="nav-number">3.3.</span> <span class="nav-text">flex</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素的水平居中"><span class="nav-number">4.</span> <span class="nav-text">元素的水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#块级元素"><span class="nav-number">4.1.</span> <span class="nav-text">块级元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内元素"><span class="nav-number">4.2.</span> <span class="nav-text">行内元素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素的垂直居中"><span class="nav-number">5.</span> <span class="nav-text">元素的垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#块级元素-1"><span class="nav-number">5.1.</span> <span class="nav-text">块级元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内元素-1"><span class="nav-number">5.2.</span> <span class="nav-text">行内元素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些不常见的CSS样式设置"><span class="nav-number">6.</span> <span class="nav-text">一些不常见的CSS样式设置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Qinggge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qinggge</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qinggge.github.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="JavaScript 里有七种数据类型，其中包括六种基本数据类型（ Number , String , Boolean , Null , Undefined , Symbol ），和一种复杂数据类型( Object )。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS里的数据">
+<meta property="og:url" content="https://qinggge.github.io/blog/04/30/2018/JS里的数据/index.html">
+<meta property="og:site_name" content="长弓手">
+<meta property="og:description" content="JavaScript 里有七种数据类型，其中包括六种基本数据类型（ Number , String , Boolean , Null , Undefined , Symbol ），和一种复杂数据类型( Object )。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-04T08:57:38.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS里的数据">
+<meta name="twitter:description" content="JavaScript 里有七种数据类型，其中包括六种基本数据类型（ Number , String , Boolean , Null , Undefined , Symbol ），和一种复杂数据类型( Object )。">
+
+<link rel="canonical" href="https://qinggge.github.io/blog/04/30/2018/JS里的数据/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JS里的数据 | 长弓手</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">长弓手</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qinggge.github.io/blog/04/30/2018/JS里的数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Qinggge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长弓手">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS里的数据
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-04-30 18:53:47" itemprop="dateCreated datePublished" datetime="2018-04-30T18:53:47+08:00">2018-04-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>JavaScript 里有七种数据类型，其中包括六种基本数据类型（ <code>Number</code> , <code>String</code> , <code>Boolean</code> , <code>Null</code> , <code>Undefined</code> , <code>Symbol</code> ），和一种复杂数据类型( <code>Object</code> )。<br><a id="more"></a></p>
+<h1 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h1><p>JavaScript 内部，所有的数字都是以64位浮点数的形式储存，整数也是如此。因此，<code>1</code>和<code>1.0</code>是相同的，是同一个数。<br><code>1 === 1.0 // true</code><br>这就是说，JavaScript 语言的底层根本没有整数，所有数字都是小数（64位浮点数）。容易造成混淆的是，某些运算只有整数才能完成，此时 JavaScript 会自动把64位浮点数，转成32位整数，然后再进行运算。<br>由于浮点数不是精确的值，所以涉及小数的比较和运算要特别小心。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> === <span class="number">0.3</span>  <span class="comment">// false</span></span><br><span class="line"><span class="number">0.3</span> / <span class="number">0.1</span>  <span class="comment">// 2.9999999999999996</span></span><br><span class="line">(<span class="number">0.3</span> - <span class="number">0.2</span>) === (<span class="number">0.2</span> - <span class="number">0.1</span>) <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>十进制：<code>1</code>, <code>1.0</code>, <code>.1</code><br>二进制：<code>0b1(1)</code>, <code>0b10(2)</code><br>八进制：<code>011(9)</code>  ！！注意！！<br>十六进制：<code>0X11(17)</code>  </p>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>字符串就是零个或多个排在一起的字符，放在单引号或者双引号之中。<br><code>&#39;你好&#39;</code>，<code>&quot;你好&quot;</code>，<code>&#39;&#39;</code>（空字符串），<code>&quot;&quot;</code>（空字符串），<code>&#39; &#39;</code>（空格字符串），<code>&quot; &quot;</code>（空格字符串）  </p>
+<p>多行字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'12345 \</span></span><br><span class="line"><span class="string">67890'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">'12345'</span> + </span><br><span class="line">        <span class="string">'67890'</span></span><br></pre></td></tr></table></figure></p>
+<p>ES6中，可用<strong>反引号</strong>将需要换行的字符串接起来：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c = <span class="string">`12345</span></span><br><span class="line"><span class="string">67890`</span> <span class="comment">// 6之前不能有空格，包含回车字符。</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h1><p><code>&amp;&amp;</code> ：与<br><code>||</code> ：或<br><code>true</code> ， <code>false</code><br>五个 falsy 值： <code>false</code> 、 <code>undefined</code> 、 <code>null</code> 、 <code>0</code> 、 <code>NaN</code><br>所有的 <code>Object</code> 都是 <code>true</code>。</p>
+<h1 id="Null-与-Undefined"><a href="#Null-与-Undefined" class="headerlink" title="Null 与 Undefined"></a>Null 与 Undefined</h1><p>一般认为：  </p>
+<ol>
+<li>当一个变量没有值时，应为 <code>undefined</code></li>
+<li>有一个非对象，不想赋值时，应为 <code>undefined</code></li>
+<li>有一个对象，不想赋值时，应为 <code>null</code>  </li>
+</ol>
+<h1 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h1><p>简单来说，对象（ <code>Object</code> ）就是一组”键值对“（ <code>key-value</code> ）的集合，是一种无序的复合数据集合。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'Qing'</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，大括号里定义了一个对象。它被赋值给变量 <code>obj</code> ，所以变量 <code>obj</code> 就指向一个对象。该对象内部包含两个 <code>key-value</code> ，分别是 <code>name: &#39;Qing&#39;</code> ， <code>age: 18</code> ， <code>name</code> 和 <code>age</code> 为键名( <code>key</code> )， <code>Qing</code> 和 <code>18</code> 为键值( <code>value</code> )，两个 <code>key-value</code> 之间用逗号分隔开。   </p>
+<p>对象的所有键名都是字符串（ES6中也可用 <code>Symbol</code> 值作为键值），所以加不加引号都可以。以上代码也可以写成下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="string">'name'</span>: <span class="string">'Qing'</span>,</span><br><span class="line">    <span class="string">'age'</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果键名是数值，会被自动转为字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1</span>: <span class="string">'a'</span>,</span><br><span class="line">  <span class="number">3.2</span>: <span class="string">'b'</span>,</span><br><span class="line">  <span class="number">1e2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">1e-2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">.234</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">0xFF</span>: <span class="literal">true</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj</span><br><span class="line"><span class="comment">// Object &#123;</span></span><br><span class="line"><span class="comment">//   1: "a",</span></span><br><span class="line"><span class="comment">//   3.2: "b",</span></span><br><span class="line"><span class="comment">//   100: true,</span></span><br><span class="line"><span class="comment">//   0.01: true,</span></span><br><span class="line"><span class="comment">//   0.234: true,</span></span><br><span class="line"><span class="comment">//   255: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">obj[<span class="string">'100'</span>] <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，对象 <code>obj</code> 的所有键名虽然看上去像数值，实际上都被自动转成了字符串。</p>
+<p>如果键名不符合标识名的条件（比如第一个字符为数字，或者含有空格或运算符），且也不是数字，则必须加上引号，否则会报错。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1</span>p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="string">'1p'</span>: <span class="string">'Hello World'</span>,</span><br><span class="line">  <span class="string">'h w'</span>: <span class="string">'Hello World'</span>,</span><br><span class="line">  <span class="string">'p+q'</span>: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>上面对象的三个键名，都不符合标识名的条件，所以必须加上引号。</p>
+<h1 id="typeof-操作符"><a href="#typeof-操作符" class="headerlink" title="typeof 操作符"></a>typeof 操作符</h1><p>typeof 操作符可以返回一个值的数据类型：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">123</span> <span class="comment">// "number"</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">`123`</span> <span class="comment">// "string"</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">false</span> <span class="comment">// "boolean"</span></span><br></pre></td></tr></table></figure></p>
+<p>其中有两个特殊值需特别注意：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  <span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// "object"</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>  <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">typeof</span> fn <span class="comment">// "function"</span></span><br></pre></td></tr></table></figure></p>
+<p>1中本应返回 <code>&quot;null&quot;</code> ,2中本应返回 <code>&quot;object&quot;</code>，此为历史遗留问题。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/04/08/2018/CSS-Tricks/" rel="prev" title="CSS-Tricks">
+      <i class="fa fa-chevron-left"></i> CSS-Tricks
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/05/03/2018/JS数据类型转换/" rel="next" title="JS里的数据类型转换">
+      JS里的数据类型转换 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Number"><span class="nav-number">1.</span> <span class="nav-text">Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boolean"><span class="nav-number">3.</span> <span class="nav-text">Boolean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Null-与-Undefined"><span class="nav-number">4.</span> <span class="nav-text">Null 与 Undefined</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object"><span class="nav-number">5.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typeof-操作符"><span class="nav-number">6.</span> <span class="nav-text">typeof 操作符</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Qinggge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qinggge</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

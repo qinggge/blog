@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qinggge.github.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="什么是HTTP？ HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它的发展是万维网协会（World Wide Web Consortium）和Internet工作小组IETF（Internet Engineering Task Force）合作的结果。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议简单入门">
+<meta property="og:url" content="https://qinggge.github.io/blog/03/31/2018/HTTP协议简单入门/index.html">
+<meta property="og:site_name" content="长弓手">
+<meta property="og:description" content="什么是HTTP？ HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它的发展是万维网协会（World Wide Web Consortium）和Internet工作小组IETF（Internet Engineering Task Force）合作的结果。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/server_browser.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_1.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_2.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_3.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_4.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_5.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_6.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_7.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_8.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_9.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_10.png">
+<meta property="og:image" content="http://p69er22kd.bkt.clouddn.com/HTTP_11.png">
+<meta property="og:updated_time" content="2020-04-04T08:57:38.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP协议简单入门">
+<meta name="twitter:description" content="什么是HTTP？ HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它的发展是万维网协会（World Wide Web Consortium）和Internet工作小组IETF（Internet Engineering Task Force）合作的结果。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机">
+<meta name="twitter:image" content="http://p69er22kd.bkt.clouddn.com/server_browser.png">
+
+<link rel="canonical" href="https://qinggge.github.io/blog/03/31/2018/HTTP协议简单入门/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTTP协议简单入门 | 长弓手</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">长弓手</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qinggge.github.io/blog/03/31/2018/HTTP协议简单入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Qinggge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长弓手">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTTP协议简单入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-03-31 18:53:47" itemprop="dateCreated datePublished" datetime="2018-03-31T18:53:47+08:00">2018-03-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是HTTP？"><a href="#什么是HTTP？" class="headerlink" title="什么是HTTP？"></a>什么是HTTP？</h1><blockquote>
+<p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。<br>它的发展是万维网协会（World Wide Web Consortium）和Internet工作小组IETF（Internet Engineering Task Force）合作的结果。它可以使浏览器更加高效，使网络传输减少。<br>它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。  </p>
+</blockquote>
+<h1 id="HTTP版本"><a href="#HTTP版本" class="headerlink" title="HTTP版本"></a>HTTP版本</h1><blockquote>
+<p>最早版本是1991年发布的HTTP0.9版，该版本只有一个命令<code>GET</code>，且只能回应HTML格式的字符串，无法回应别的格式。<br>最常用的版本是HTTP1.0/1.1。<br>最新版本是HTTP2.0，与1.0/1.1相比，有了更高的性能、安全性和灵活性。<br><a id="more"></a></p>
+</blockquote>
+<h1 id="HTTP请求与响应"><a href="#HTTP请求与响应" class="headerlink" title="HTTP请求与响应"></a>HTTP请求与响应</h1><h2 id="服务器与浏览器的交互"><a href="#服务器与浏览器的交互" class="headerlink" title="服务器与浏览器的交互"></a>服务器与浏览器的交互</h2><p><img src="http://p69er22kd.bkt.clouddn.com/server_browser.png" alt="server_browser">  </p>
+<ul>
+<li>浏览器负责发起请求</li>
+<li>服务器在80端口接收请求</li>
+<li>服务器负责返回内容（响应）</li>
+<li>浏览器负责下载响应内容  </li>
+</ul>
+<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>用curl创造一个请求，并获得响应。<br>e.g.<br><code>curl -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code><br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_1.png" alt="HTTP_1">  </p>
+<p><code>curl -X POST -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code><br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_2.png" alt="HTTP_2">    </p>
+<p><code>curl -X POST -d &quot;1234567890&quot; -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code><br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_3.png" alt="HTTP_3">  </p>
+<p>请求的格式：<br>1.请求方式 路径 协议/版本<br>2.key: value<br>2.key: value<br>2.Content-Length: 10（例）<br>2.Content-Type: application/x-www-form-urlencoded（例）<br>3.（空行）<br>4.要上传的数据</p>
+<h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><p>以上的HTTP请求对应的HTTP响应如下：<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_4.png" alt="HTTP_4">  </p>
+<p><img src="http://p69er22kd.bkt.clouddn.com/HTTP_5.png" alt="HTTP_5">  </p>
+<p><img src="http://p69er22kd.bkt.clouddn.com/HTTP_6.png" alt="HTTP_6">  </p>
+<p>响应的格式：<br>1.协议/版本 状态码 状态解释<br>2.key: value<br>2.key: value<br>2.Content-Length: 17931（例）<br>2.Content-Type: text/html（例）<br>3.（空行）<br>4.要下载的内容  </p>
+<h2 id="常见Content-Type"><a href="#常见Content-Type" class="headerlink" title="常见Content-Type"></a>常见Content-Type</h2><table>
+<thead>
+<tr>
+<th>Content-Type</th>
+<th>文件扩展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text/plain</td>
+<td>.sol/.txt/.sor</td>
+</tr>
+<tr>
+<td>text/html</td>
+<td>.html/.jsp/.xhtml</td>
+</tr>
+<tr>
+<td>text/css</td>
+<td>.css</td>
+</tr>
+<tr>
+<td>image/jpeg</td>
+<td>.jpg/.jpeg</td>
+</tr>
+<tr>
+<td>image/png</td>
+<td>.png</td>
+</tr>
+<tr>
+<td>image/svg+xml</td>
+<td>.svg</td>
+</tr>
+<tr>
+<td>audio/mp3</td>
+<td>.mp3</td>
+</tr>
+<tr>
+<td>video/mp4</td>
+<td>.mp4/.m4e</td>
+</tr>
+<tr>
+<td>application/javascript</td>
+<td>.js</td>
+</tr>
+<tr>
+<td>application/pdf</td>
+<td>.pdf</td>
+</tr>
+<tr>
+<td>application/zip</td>
+<td>.zip</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见HTTP状态码"><a href="#常见HTTP状态码" class="headerlink" title="常见HTTP状态码"></a>常见HTTP状态码</h2><ol>
+<li><p>200 OK<br>一切正常，对GET和POST请求的响应文档跟在后面  </p>
+</li>
+<li><p>301 Moved Permanently<br>客户请求的文档在其他地方，新的URL在Location头中给出，浏览器应该自动地访问新的URL。  </p>
+</li>
+<li><p>302 Found<br>类似于301，但新的URL应该被视为临时性的替代，而不是永久性的。  </p>
+</li>
+<li><p>304 Not Modified<br>客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。  </p>
+</li>
+<li><p>400 Bad Request<br>请求出现语法错误。  </p>
+</li>
+<li><p>401 Unauthorized<br>客户试图未经授权访问受密码保护的页面。应答中会包含一个WWW-Authenticate头，浏览器据此显示用户名字/密码对话框，然后在填写合适的Authorization头后再次发出请求。  </p>
+</li>
+<li><p>403 Forbidden<br>资源不可用。  </p>
+</li>
+<li><p>404 Not Found<br>无法找到指定位置的资源。  </p>
+</li>
+<li><p>410 Gone<br>所请求的文档已经不再可用，而且服务器不知道应该重定向到哪一个地址，返回410表示文档永久地离开了指定的位置。  </p>
+</li>
+<li><p>500 Internal Server Error<br>服务器遇到了意料不到的情况，不能完成客户的请求。  </p>
+</li>
+<li><p>501 Not Implemented<br>服务器不支持实现请求所需要的功能。例如，客户发出了一个服务器不支持的PUT请求。 </p>
+</li>
+</ol>
+<h1 id="如何使用curl命令？"><a href="#如何使用curl命令？" class="headerlink" title="如何使用curl命令？"></a>如何使用curl命令？</h1><p>常见参数  </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s/–silent</td>
+<td>静音模式，不显示进度与错误</td>
+</tr>
+<tr>
+<td>-v/–verbose</td>
+<td>显示请求（否则只显示响应）</td>
+</tr>
+<tr>
+<td>-H/–header</td>
+<td>添加一个Key/Value</td>
+</tr>
+<tr>
+<td>– “<code>https://XXXX.XXX</code>”</td>
+<td>需要请求的网址</td>
+</tr>
+<tr>
+<td>-X/–request</td>
+<td>指定请求的命令，如<code>-X POST</code></td>
+</tr>
+<tr>
+<td>-d/–data</td>
+<td>POST方式传输数据</td>
+</tr>
+</tbody>
+</table>
+<p>e.g.  </p>
+<p><code>curl -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code>  </p>
+<p><code>curl -X POST -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code>  </p>
+<p><code>curl -X POST -d &quot;1234567890&quot; -s -v -H &quot;Frank: xxx&quot; -- &quot;https://www.baidu.com&quot;</code>  </p>
+<h1 id="使用Chrome开发者工具查看HTTP请求-响应内容"><a href="#使用Chrome开发者工具查看HTTP请求-响应内容" class="headerlink" title="使用Chrome开发者工具查看HTTP请求/响应内容"></a>使用Chrome开发者工具查看HTTP请求/响应内容</h1><p>Chrome浏览器不仅可以调试页面、JS、请求、资源、cookie，还可以模拟手机进行调试，是一个十分强大的网页浏览器。以下介绍如何使用Chrome浏览器下的开发者工具查看HTTP请求及响应内容。  </p>
+<h2 id="使用Chrome开发者工具查看HTTP请求"><a href="#使用Chrome开发者工具查看HTTP请求" class="headerlink" title="使用Chrome开发者工具查看HTTP请求"></a>使用Chrome开发者工具查看HTTP请求</h2><ol>
+<li><p>打开Chrome浏览器，按下键盘上的 <code>F12</code> 键或 <code>Ctrl+Shift+I</code> 即可打开开发者工具栏，也可在浏览器右上角点击 <code>自定义及控制Google Chrome</code> 按钮，<code>更多</code> → <code>开发者工具</code> 里打开。<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_7.png" alt="HTTP_7">  </p>
+</li>
+<li><p>在 <code>开发者工具</code> 中切换至 <code>Network</code> 选项，将调试对象切换至 <code>All</code>。<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_8.png" alt="HTTP_8">  </p>
+</li>
+<li><p>在网址栏中输入 <code>www.baidu.com</code> 并确认，即可在 <code>开发者工具</code>中找到我们需要的HTTP请求内容。<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_9.png" alt="HTTP_9">  </p>
+</li>
+<li><p>点击进入，在Headers中可看到 <code>Request Headers</code> 选项，进入该选项，点击 <code>View Source</code> ，即可看到本次访问 <code>www.baidu.com</code> 的HTTP请求。<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_10.png" alt="HTTP_10">  </p>
+</li>
+</ol>
+<h2 id="使用Chrome开发者工具查看HTTP响应"><a href="#使用Chrome开发者工具查看HTTP响应" class="headerlink" title="使用Chrome开发者工具查看HTTP响应"></a>使用Chrome开发者工具查看HTTP响应</h2><ol>
+<li>同上。</li>
+<li>同上。</li>
+<li>同上。</li>
+<li>点击进入，在Headers中可看到 <code>Response Headers</code> 选项，进入该选项，点击 <code>View Source</code> ，即可看到本次访问 <code>www.baidu.com</code> 的HTTP响应。<br><img src="http://p69er22kd.bkt.clouddn.com/HTTP_11.png" alt="HTTP_11">  </li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/HTTP/" rel="tag"># HTTP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/03/29/2018/命令行简单入门/" rel="prev" title="命令行简单入门">
+      <i class="fa fa-chevron-left"></i> 命令行简单入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/04/03/2018/HTML入门（一）/" rel="next" title="HTML入门（一）">
+      HTML入门（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是HTTP？"><span class="nav-number">1.</span> <span class="nav-text">什么是HTTP？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP版本"><span class="nav-number">2.</span> <span class="nav-text">HTTP版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP请求与响应"><span class="nav-number">3.</span> <span class="nav-text">HTTP请求与响应</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器与浏览器的交互"><span class="nav-number">3.1.</span> <span class="nav-text">服务器与浏览器的交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求"><span class="nav-number">3.2.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP响应"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见Content-Type"><span class="nav-number">3.4.</span> <span class="nav-text">常见Content-Type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见HTTP状态码"><span class="nav-number">3.5.</span> <span class="nav-text">常见HTTP状态码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何使用curl命令？"><span class="nav-number">4.</span> <span class="nav-text">如何使用curl命令？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Chrome开发者工具查看HTTP请求-响应内容"><span class="nav-number">5.</span> <span class="nav-text">使用Chrome开发者工具查看HTTP请求/响应内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Chrome开发者工具查看HTTP请求"><span class="nav-number">5.1.</span> <span class="nav-text">使用Chrome开发者工具查看HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Chrome开发者工具查看HTTP响应"><span class="nav-number">5.2.</span> <span class="nav-text">使用Chrome开发者工具查看HTTP响应</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Qinggge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qinggge</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

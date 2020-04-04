@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qinggge.github.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="同源政策1995年，NetScape公司（火狐前身）提出了浏览器的同源政策，目的是保护使用网站的用户的信息安全。所谓的同源是指“三个相同”：    协议相同 域名相同 端口相同">
+<meta name="keywords" content="JavaScript,JSONP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSONP是什么鬼？">
+<meta property="og:url" content="https://qinggge.github.io/blog/06/20/2018/JSONP是什么鬼？/index.html">
+<meta property="og:site_name" content="长弓手">
+<meta property="og:description" content="同源政策1995年，NetScape公司（火狐前身）提出了浏览器的同源政策，目的是保护使用网站的用户的信息安全。所谓的同源是指“三个相同”：    协议相同 域名相同 端口相同">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-04T08:57:38.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSONP是什么鬼？">
+<meta name="twitter:description" content="同源政策1995年，NetScape公司（火狐前身）提出了浏览器的同源政策，目的是保护使用网站的用户的信息安全。所谓的同源是指“三个相同”：    协议相同 域名相同 端口相同">
+
+<link rel="canonical" href="https://qinggge.github.io/blog/06/20/2018/JSONP是什么鬼？/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JSONP是什么鬼？ | 长弓手</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">长弓手</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qinggge.github.io/blog/06/20/2018/JSONP是什么鬼？/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Qinggge">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="长弓手">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JSONP是什么鬼？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-20 09:10:11" itemprop="dateCreated datePublished" datetime="2018-06-20T09:10:11+08:00">2018-06-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="同源政策"><a href="#同源政策" class="headerlink" title="同源政策"></a>同源政策</h1><p>1995年，NetScape公司（火狐前身）提出了浏览器的同源政策，目的是保护使用网站的用户的信息安全。<br>所谓的同源是指“三个相同”：  </p>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同  </li>
+</ul>
+<a id="more"></a>
+<p>举个例子，<code>http://www.abc.com/save/index.html</code> 这个网址，<code>http://</code> 是协议，<code>www.abc.com</code> 是域名，端口是 <code>80</code> （默认端口，可以省略）。  </p>
+<h1 id="浏览器向服务器提交数据"><a href="#浏览器向服务器提交数据" class="headerlink" title="浏览器向服务器提交数据"></a>浏览器向服务器提交数据</h1><p>浏览器向服务器提交数据，可以使用 <code>form</code> 表单。以下模拟用 <code>form</code> 表单付款这一操作。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>您的账户余额是<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"amount"</span>&gt;</span>200<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"button"</span>&gt;</span>付款1块钱<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/pay"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"number"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"付款"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用 <code>POST</code> 发起请求有一个致命缺点，就是请求的成功失败，只能在页面刷新后才能知道。此时可以使用 <code>&lt;iframe&gt;</code> 标签在本页面显示请求结果。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/pay"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">target</span>=<span class="string">"result"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"number"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"付款"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"result"</span> <span class="attr">src</span>=<span class="string">"about:blank"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样一来，请求结果就可以不用刷新，直接在页面内做响应。<br>账户余额 <code>200</code> 也不需要写死，可以用占位符表示，并从服务器获取。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 页面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>您的账户余额是<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"amount"</span>&gt;</span>&amp;&amp;&amp;amount&amp;&amp;&amp;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JS</span></span><br><span class="line">button.addEventListener(<span class="string">'click'</span>,(e) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> n = amount.innerText</span><br><span class="line">    <span class="keyword">let</span> number = <span class="built_in">parseInt</span>(n,<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">let</span> newNumber = number - <span class="number">1</span></span><br><span class="line">    amount.innerText = newNumber</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端</span></span><br><span class="line"><span class="keyword">var</span> amount = fs.readFileSync(<span class="string">'./db'</span>,<span class="string">'utf8'</span>)</span><br><span class="line">string = string.replace(<span class="string">'&amp;&amp;&amp;amount&amp;&amp;&amp;'</span>,amount)</span><br><span class="line">......</span><br><span class="line">response.wrire(string)</span><br></pre></td></tr></table></figure>
+<h1 id="其他方式向服务端发起请求"><a href="#其他方式向服务端发起请求" class="headerlink" title="其他方式向服务端发起请求"></a>其他方式向服务端发起请求</h1><p>众所周知，<code>&lt;img&gt;</code>、<code>&lt;link&gt;</code>等标签都可以发起请求，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">image.src = <span class="string">'/pay'</span></span><br><span class="line">image.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'打钱成功'</span>)</span><br><span class="line">    amount.innerText -= <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">image.onerror = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    alert(<span class="string">'打钱失败'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用这类方法也可以在页面中做出响应，但也只能发起 <code>GET</code> 请求，可以说是浏览器端发起请求的一大奇招。<br>同时，伟大的前端程序员们将目光转向了 <code>&lt;script&gt;</code> 标签。</p>
+<h1 id="动态创建JS脚本发起请求"><a href="#动态创建JS脚本发起请求" class="headerlink" title="动态创建JS脚本发起请求"></a>动态创建JS脚本发起请求</h1><p>动态创建JS，并在页面中插入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用js脚本发起请求  </span></span><br><span class="line">    <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">    script.src = <span class="string">'/pay'</span></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">    script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">'failed'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   ...</span><br><span class="line">   <span class="comment">//服务器端一般这么干</span></span><br><span class="line">   <span class="keyword">if</span>(path === <span class="string">'/pay'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> amount = fs.readFileSync(<span class="string">'./db'</span>, <span class="string">'utf8'</span>)</span><br><span class="line">    <span class="keyword">var</span> newAmount = amount - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    fs.writeFileSync(<span class="string">'./db'</span>, newAmount)</span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'application/javascript'</span>)</span><br><span class="line">    response.statusCode = <span class="number">200</span></span><br><span class="line">    response.write(<span class="string">`</span></span><br><span class="line"><span class="string">      amount.innerText = amount.innerText - 1</span></span><br><span class="line"><span class="string">    `</span>)</span><br><span class="line">    response.end()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在动态创建JS之后，需要在页面中插入该 <code>&lt;script&gt;</code> 标签，才会发起请求。<br>如果这么操作，每发起一次请求，就会在页面中新增一个 <code>&lt;script&gt;</code> 标签，所以需要在其创建后立即移除：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用js脚本发起请求  </span></span><br><span class="line">    <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">    script.src = <span class="string">'/pay'</span></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">    script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      e.currentTarget.remove() <span class="comment">//加载完了，就移除</span></span><br><span class="line">    &#125;</span><br><span class="line">    script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">'failed'</span>)</span><br><span class="line">      e.currentTarget.remove() <span class="comment">//加载完了，就移除</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然把标签移除了，但是标签所造成的影响已经反应出来了。这种方案叫做 <code>SRJ</code> （Server rendered javascript）服务器返回的JavaScript。  </p>
+<h1 id="请求另一个网站的script"><a href="#请求另一个网站的script" class="headerlink" title="请求另一个网站的script"></a>请求另一个网站的script</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    <span class="comment">//用js脚本发起请求  </span></span><br><span class="line">    <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">    <span class="keyword">let</span> functionName = <span class="string">'qing'</span> + <span class="built_in">parseInt</span>((<span class="built_in">Math</span>.random()*<span class="number">100000</span>), <span class="number">10</span>)</span><br><span class="line">    <span class="built_in">window</span>[functionName] = <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (result === <span class="string">'success'</span>) &#123;</span><br><span class="line">        amount.innerText = amount.innerText - <span class="number">1</span></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    script.src = <span class="string">'http://想访问的另一个网站:端口号/pay?callback='</span> + functionName</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(script)</span><br><span class="line">    script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      e.currentTarget.remove()</span><br><span class="line">    &#125;</span><br><span class="line">    script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      alert(<span class="string">'failed'</span>)</span><br><span class="line">      e.currentTarget.remove()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>代码中：  </p>
+<ol>
+<li><code>let functionName = &#39;qing&#39; = parseInt(Math.random()*100000,10)</code><br>随机构建自己的函数名字，可以与服务器代码完美解耦，服务器只需要获取查询参数 <code>?callback=functionName</code> 里的 <code>functionName</code> 就可以了。  </li>
+<li><p><code>window[functionName] = function (result) {}</code> 在window全局对象上添加 <code>functionName</code> 属性，该属性是一个函数，当服务端返回响应之后，浏览器端的写的函数的参数就是服务器端的success，我们就知道我的数据成功了。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务器端只需要这样就可以了，不关心你写的是什么函数名字  </span></span><br><span class="line"></span><br><span class="line">response.write(<span class="string">`</span></span><br><span class="line"><span class="string"><span class="subst">$&#123;query.callback&#125;</span>.call(undefined, 'success')</span></span><br><span class="line"><span class="string">`</span>)</span><br></pre></td></tr></table></figure>
+<p> 当然不要忘记把全局对象的属性去掉：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.currentTarget.remove()</span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName]</span><br><span class="line">&#125;</span><br><span class="line">script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'failed'</span>)</span><br><span class="line">    e.currentTarget.remove()</span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="jQuery实现"><a href="#jQuery实现" class="headerlink" title="jQuery实现"></a>jQuery实现</h1><p>强大的 <code>jQuery</code> 可以十分简洁明了地实现以上代码所实现的功能：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">"http://想访问的另一个网站:端口号/pay"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The name of the callback parameter, as specified by the YQL    service</span></span><br><span class="line">    jsonp: <span class="string">"callback"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Tell jQuery we're expecting JSONP</span></span><br><span class="line">    dataType: <span class="string">"jsonp"</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Work with the response</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(response === <span class="string">'success'</span>) &#123;</span><br><span class="line">        amount.innerText = amount.innerText - <span class="number">1</span> </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>虽然是用 <code>$.ajax</code> 实现的，但是这个方法与 <code>ajax</code> 并没有什么关系。</p>
+<h1 id="什么是JSONP？"><a href="#什么是JSONP？" class="headerlink" title="什么是JSONP？"></a>什么是JSONP？</h1><p><code>JSONP</code> （JSON with Padding）是 <code>JSON</code> 的一种使用方式，可以让网页从别的域名（网站）获取数据，即跨域读取数据。<br>请求方是一个网站（服务器端），响应方是另一个网站（服务器端）。  </p>
+<ol>
+<li>请求方动态创建一个 <code>script</code> 脚本，属性 <code>src</code> 是响应方的地址，同时传递一个查询参数 <code>?callbackName=functionName</code> ，通常约定 <code>callbackName</code> 用 <code>callback</code> 来代替，<code>functionName</code> 通过字母+随机数来代替。  </li>
+<li>响应方根据收到的查询参数 <code>callbackName=functionName</code> ，来构造形如：<code>functionName.call(undefined,&#39;success&#39;)</code> 的响应。</li>
+<li>浏览器收到响应，就执行 <code>functionName.call(undefined,&#39;success&#39;)</code>  。</li>
+<li>此时，请求方就知道该请求已经成功响应了。  </li>
+</ol>
+<p>以上就是 <code>JSONP</code> 的原理。</p>
+<h1 id="为什么JSONP不支持POST请求？"><a href="#为什么JSONP不支持POST请求？" class="headerlink" title="为什么JSONP不支持POST请求？"></a>为什么JSONP不支持POST请求？</h1><ol>
+<li><code>JSONP</code> 是通过动态创建 <code>script</code> 实现的。</li>
+<li>动态创建出来的 <code>script</code> 只能用 <code>GET</code> ，不支持 <code>POST</code>。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JSONP/" rel="tag"># JSONP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/06/13/2018/DOM事件模型/" rel="prev" title="DOM入门">
+      <i class="fa fa-chevron-left"></i> DOM入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/07/24/2018/Cookie是什么？/" rel="next" title="Cookie是什么？">
+      Cookie是什么？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同源政策"><span class="nav-number">1.</span> <span class="nav-text">同源政策</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器向服务器提交数据"><span class="nav-number">2.</span> <span class="nav-text">浏览器向服务器提交数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他方式向服务端发起请求"><span class="nav-number">3.</span> <span class="nav-text">其他方式向服务端发起请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建JS脚本发起请求"><span class="nav-number">4.</span> <span class="nav-text">动态创建JS脚本发起请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求另一个网站的script"><span class="nav-number">5.</span> <span class="nav-text">请求另一个网站的script</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery实现"><span class="nav-number">6.</span> <span class="nav-text">jQuery实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是JSONP？"><span class="nav-number">7.</span> <span class="nav-text">什么是JSONP？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么JSONP不支持POST请求？"><span class="nav-number">8.</span> <span class="nav-text">为什么JSONP不支持POST请求？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Qinggge</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qinggge</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
